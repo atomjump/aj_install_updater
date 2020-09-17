@@ -4,11 +4,15 @@
 	"mainServer": "v2.7.4",
 	"apiPath": "/var/www/html/your-loop-server-path/",
 	"messages": {
-		"sourceFolder": "/var/www/html/your-loop-server-path/plugins/change_language/languages/en_bg_ch_cht_de_es_fr_hi_in_it_jp_ko_pu_ru/",
+		"sourcePath": "/var/www/html/your-loop-server-path/plugins/change_language/languages/en_bg_ch_cht_de_es_fr_hi_in_it_jp_ko_pu_ru/",
 		"targetChatPath": "/var/www/html/your-loop-path/",
 		"targetInnerChatPath": "/var/www/html/your-loop-server-path/js/",
 		"targetMessagesFile": "/var/www/html/your-loop-server-path/config/messages.json"
 	},	
+	"config": {
+		"sourceConfigFile": "",
+		"targetConfigFile": ""
+	}
 	"frontend": {
 		"sourceJSPath": "/var/www/html/your-frontend-regular-updated-project/js/",
 		"targetJSPath": "/var/www/html/your-loop-path/js/",
