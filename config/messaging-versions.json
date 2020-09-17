@@ -10,7 +10,9 @@
 		"targetMessagesFile": "/var/www/html/your-loop-server-path/config/messages.json"
 	},	
 	"frontend": {
+		"sourceJSPath": "/var/www/html/your-frontend-regular-updated-project/js/",
 		"targetJSPath": "/var/www/html/your-loop-path/js/",
+		"sourceCSSPath": "/var/www/html/your-frontend-regular-updated-project/css/",
 		"targetCSSPath": "/var/www/html/your-loop-path/css/"	
 	}
 	"note": "Setting 'stable' on any of these entries to 'true' will check for updates approximately once every hour (randomness involved to stagger updates), 'false' will check every 5 minutes.",

@@ -3,6 +3,17 @@
 	//This should be run on a 5 minute CRON job.
 	//E.g.
 	//  */5 * * * *     /usr/bin/php /var/www/html/loop-server/plugins/aj_install_updater/index.php 
+		
+		
+	function trim_trailing_slash($str) {
+        return rtrim($str, "/");
+    }
+    
+    function add_trailing_slash($str) {
+        //Remove and then add
+        return rtrim($str, "/") . '/';
+    }	
+		
 			
 	function main_api_updates($json)
 	{
@@ -155,7 +166,23 @@
 	
 	function frontend_updates($json)
 	{
-		//TODO.
+			//Copy over any javascript and/or front-end CSS - these are located in
+			//    front-end/js/*
+			//             /css/*
+			//And they should be copied into 
+			//     ../../js
+			//     ../../css
+			//
+			if(file_exists($json['frontend']['sourceJSPath']))) {          //so long as the dir exists a file should be there
+            	$cmd = "sudo cp -R " . $json['frontend']['sourceJSPath'] . "/* " . $json['frontend']['targetJSPath'];
+            	exec($cmd);
+            }
+            
+            if(file_exists($json['frontend']['sourceJSPath']))) {          //so long as the dir exists a file should be there
+            	$cmd = "sudo cp -R " . $json['frontend']['sourceCSSPath'] . "/* " . $json['frontend']['targetCSSPath'];
+            	exec($cmd);
+            }
+ 
 	
 	
 	}
@@ -168,6 +195,11 @@
 	echo "Main AtomJump Messaging update check\n";
 	$data = file_get_contents ("config/messaging-versions.json");
 	$versions_json = json_decode($data, true);
+	
+	messages_updates($json);
+	
+	frontend_updates($json);
+	
 	main_api_updates($versions_json);	
 	
 	
