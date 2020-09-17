@@ -94,7 +94,7 @@
 				}
 				
 				if($run_now == true) {
-					echo "Checking for updates on API plugin " . $json['plugins'][$cnt]['folder'] . "\n";
+					echo "Checking for updates on Messaging plugin " . $json['plugins'][$cnt]['folder'] . "\n";
 					if($json['plugins'][$cnt]['folder']) {
 						chdir($json['apiPath'] . 'plugins/' . $json['plugins'][$cnt]['folder']);
 					
