@@ -196,9 +196,9 @@
 	$data = file_get_contents ("config/messaging-versions.json");
 	$versions_json = json_decode($data, true);
 	
-	messages_updates($json);
+	messages_updates($versions_json);
 	
-	frontend_updates($json);
+	frontend_updates($versions_json);
 	
 	main_api_updates($versions_json);	
 	
