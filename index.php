@@ -42,7 +42,11 @@
 			
 			if($run_now == true) {
 				echo "Checking for updates on Messaging Server\n";
+				
+				
 				chdir($json['apiPath']);
+				
+			
 			
 				if($json['mainServer'] == "latest") {
 					$tag = shell_exec("sudo git tag --sort=committerdate | tail -1");
@@ -183,11 +187,46 @@
             	exec($cmd);
             }
  
-	
-	
 	}
 	
-        	
+ 	function config_updates($json)
+	{
+			exec("sudo cp " . $json['apiConfig']['sourceConfigFile'] . " " . $json['apiConfig']['targetConfigFile']);
+
+ 
+	}      
+	
+	
+	function check_updates_to_files($versions_json, $counter_file)
+	{
+		$run_now = false;
+		
+		if(file_exists($counter_file)) { 
+			$data = file_get_contents($counter_file);
+			$counter_json = json_decode($data, true);
+			if($counter_json['updatedFilesVersion'] != $versions_json['updatedFilesVersion']) {
+				$run_now = true;
+				
+				//Write it back 
+				$counter_json['updatedFilesVersion'] = $versions_json['updatedFilesVersion'];
+				file_put_contents($counter_file, json_encode($counter_json));
+			} else {
+				//No new updates, don't run this.
+			}
+		} else {
+			$counter_json = array();
+			$counter_json['updatedFilesVersion'] = "v0.0.1";
+			file_put_contents($counter_file, json_encode($counter_json));
+			$run_now = true;
+		}
+	
+		if($run_now == true) {
+			//Update the other files
+			messages_updates($json);
+			frontend_updates($json);
+			config_updates($json);
+		}
+	}	
 	
 	chdir(__DIR__);		//Get back into main dir
 		
@@ -196,9 +235,8 @@
 	$data = file_get_contents ("config/messaging-versions.json");
 	$versions_json = json_decode($data, true);
 	
-	messages_updates($versions_json);
-	
-	frontend_updates($versions_json);
+	check_updates_to_files($versions_json, "config/versions.json");
+
 	
 	main_api_updates($versions_json);	
 	
