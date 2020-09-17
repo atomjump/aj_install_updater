@@ -4,7 +4,7 @@
 	"mainServer": "v2.7.4",
 	"apiPath": "/var/www/html/your-loop-server-path/",
 	"updatedFilesVersion": "v0.0.1",
-	"note": "To do an update to the main Messaging config, messages, or frontend, increase the number above",
+	"note": "To do an update to the main Messaging config, messages, or frontend, increase the updatedFilesVersion above, and git commit",
 	"apiConfig": {
 		"sourceConfigFile": "/your/path/your-config-file.json",
 		"targetConfigFile": "/var/www/html/your-loop-server-path/config/config.json"
