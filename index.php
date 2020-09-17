@@ -124,6 +124,44 @@
 		}
 	}
 	
+	
+	function messages_updates($json)
+	{
+	
+		    //Also tweak the front chat js.
+        	//Loop through each chat-*.js
+        	echo "Scanning for chat-*.js\n";
+        	$js_files = scandir($json['messages']['targetChatPath']);
+        	foreach($js_files as $js_file) {
+        		echo "JS file:" . $js_file . "\n";
+        		if(strpos($js_file, "chat") !== false) {
+        			
+        			$chatjs = $json['messages']['targetChatPath'] . $js_file;
+        			echo "Chat.js file being updated:" . $chatjs . "\n";
+        	
+					//E.g. $chatjs = "../../bower_components/atomjump/js/chat.js";
+					if(file_exists($chatjs)) {          //looking for chat.js, but so long as the dir exists a file should be there
+						//Put the chat.js file into a string               
+						$message_script_str = file_get_contents($json['messages']['sourceFolder'] . "chat-messages.json");            //Get the new messages for this js file
+						$js_script_str = file_get_contents($chatjs);
+						$new_js_script_str = preg_replace('#lsmsg = (.*?)var lang#s',"lsmsg = " . $message_script_str . "\nvar lang", $js_script_str);
+						//Write out the new js file, overwriting the old one
+						file_put_contents($chatjs, $new_js_script_str);
+					}
+				}
+			}
+	}
+	
+	
+	function frontend_updates($json)
+	{
+		//TODO.
+	
+	
+	}
+	
+        	
+	
 	chdir(__DIR__);		//Get back into main dir
 		
 	//Now check for 

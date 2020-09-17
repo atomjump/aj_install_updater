@@ -2,7 +2,17 @@
 	"allowAutoUpdates": false,
 	"note" : "Switch to true above when happy.",
 	"mainServer": "v2.7.4",
-	"apiPath": "/var/www/html/atomjump/api/",
+	"apiPath": "/var/www/html/your-loop-server-path/",
+	"messages": {
+		"sourceFolder": "/var/www/html/your-loop-server-path/plugins/change_language/languages/en_bg_ch_cht_de_es_fr_hi_in_it_jp_ko_pu_ru/",
+		"targetChatPath": "/var/www/html/your-loop-path/",
+		"targetInnerChatPath": "/var/www/html/your-loop-server-path/js/",
+		"targetMessagesFile": "/var/www/html/your-loop-server-path/config/messages.json"
+	},	
+	"frontend": {
+		"targetJSPath": "/var/www/html/your-loop-path/js/",
+		"targetCSSPath": "/var/www/html/your-loop-path/css/"	
+	}
 	"note": "Setting 'stable' on any of these entries to 'true' will check for updates approximately once every hour (randomness involved to stagger updates), 'false' will check every 5 minutes.",
 	"gitMainBranch": "origin master",
 	"stable": false,
