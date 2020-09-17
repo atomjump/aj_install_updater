@@ -1,0 +1,37 @@
+{
+	"allowAutoUpdates": false,
+	"note" : "Switch to true above when happy.",
+	"mainServer": "v2.7.4",
+	"apiPath": "/var/www/html/atomjump/api/",
+	"note": "Setting 'stable' on any of these entries to 'true' will check for updates approximately once every hour (randomness involved to stagger updates), 'false' will check every 5 minutes.",
+	"gitMainBranch": "origin master",
+	"stable": false,
+	"plugins": [
+         {
+         	"folder": "emoticons_basic",
+         	"ver" : "v1.0.2",
+         	"note" : "You can also use 'latest' in the version to update to the latest release automatically",
+         	"stable": false
+         },
+         {
+         	"folder": "help_is_coming",
+         	"ver" : "v1.0.4",
+         	"stable": false
+	     },
+	     {
+	     	"folder": "change_language",
+         	"ver" : "v1.0.3",
+         	"stable" : false
+	     },
+	     {
+	     	"folder": "notifications",
+         	"ver" : "v1.1.7",
+         	"stable": false
+	     },
+	     {
+	     	"folder": "emoticons_large",
+         	"ver" : "v1.0.3",
+         	"stable": false
+	     }
+      ]
+}
